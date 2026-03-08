@@ -66,9 +66,9 @@ class ActionFlee(Node):
         return "SUCCESS"
 
 class ActionChase(Node):
-    """Nodo de acción: Cambiar el estado del enemigo a PERSEGUIR."""
+    """Nodo de acción: Cambiar el estado del enemigo a PERSECUCION."""
     def tick(self, context):
-        context['state'] = "PERSEGUIR"
+        context['state'] = "PERSECUCION"
         return "SUCCESS"
 
 class ActionPatrol(Node):

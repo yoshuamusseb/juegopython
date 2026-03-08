@@ -50,9 +50,9 @@ class Enemy:
             self.sprite_w, self.sprite_h = TILE_SIZE, TILE_SIZE
 
         # --- TU IA (AHORA CON ÁRBOL DE COMPORTAMIENTO) ---
-        self.move_delay = 25  
+        self.move_delay = 18  # Reaccionará más rápido (antes 25)
         self.move_counter = 0
-        self.vision_range = 7
+        self.vision_range = 9 # Ve un poco más lejos
         self.state = "PATRULLA"
         self.persistence_timer = 0
         self.persistence_duration = 9 * 60 
@@ -94,7 +94,9 @@ class Enemy:
 
         if self.move_counter >= self.move_delay:
             dist = abs(self.row - player_pos[0]) + abs(self.col - player_pos[1])
-            lo_ve = dist <= self.vision_range and self.tiene_linea_de_vision(player_pos, self.maze_data)
+            
+            # Quitar la estricta línea de visión, solo importa qué tan cerca estés
+            lo_ve = dist <= self.vision_range
 
             if lo_ve: self.persistence_timer = self.persistence_duration
             

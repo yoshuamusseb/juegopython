@@ -87,16 +87,16 @@ class Player:
             joy_x = joy_x if abs(joy_x) > 0.5 else dpad[0]
             joy_y = joy_y if abs(joy_y) > 0.5 else -dpad[1] 
 
-        if keys[pygame.K_w] or joy_y < -0.5: 
+        if keys[pygame.K_w] or keys[pygame.K_UP] or joy_y < -0.5: 
             new_row -= 1; moved = True
             self.image = self.sprites["ARRIBA"]
-        elif keys[pygame.K_s] or joy_y > 0.5: 
+        elif keys[pygame.K_s] or keys[pygame.K_DOWN] or joy_y > 0.5: 
             new_row += 1; moved = True
             self.image = self.sprites["ABAJO"]
-        elif keys[pygame.K_a] or joy_x < -0.5: 
+        elif keys[pygame.K_a] or keys[pygame.K_LEFT] or joy_x < -0.5: 
             new_col -= 1; moved = True
             self.image = self.sprites["IZQUIERDA"]
-        elif keys[pygame.K_d] or joy_x > 0.5: 
+        elif keys[pygame.K_d] or keys[pygame.K_RIGHT] or joy_x > 0.5: 
             new_col += 1; moved = True
             self.image = self.sprites["DERECHA"]
 
