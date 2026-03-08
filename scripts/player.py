@@ -76,11 +76,14 @@ class Player:
         joy_x, joy_y = 0, 0
         if pygame.joystick.get_count() > 0:
             joystick = pygame.joystick.Joystick(0)
-            # Leer ejes analógicos
-            joy_x = joystick.get_axis(0)
-            joy_y = joystick.get_axis(1)
-            # Leer cruceta (D-PAD)
-            dpad = joystick.get_hat(0)
+            # Leer ejes analógicos si los hay
+            if joystick.get_numaxes() >= 2:
+                joy_x = joystick.get_axis(0)
+                joy_y = joystick.get_axis(1)
+            # Leer cruceta (D-PAD) si la hay
+            dpad = (0, 0)
+            if joystick.get_numhats() > 0:
+                dpad = joystick.get_hat(0)
             joy_x = joy_x if abs(joy_x) > 0.5 else dpad[0]
             joy_y = joy_y if abs(joy_y) > 0.5 else -dpad[1] 
 
